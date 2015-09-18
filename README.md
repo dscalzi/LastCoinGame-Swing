@@ -8,20 +8,12 @@
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Download will soon be ready.
 
-### Contribution guidelines ###
+### System Requirements for Jar ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Java 8 (you can recompile in Java 7 if you really want)
 
-### Who do I talk to? ###
+### Contact ###
 
-* Repo owner or admin
-* Other community or team contact
+* Repo owner or admin (Daniel Scalzi)
