@@ -15,9 +15,11 @@
 
 ### System Requirements for Jar ###
 
-* Java 8 (you can recompile in Java 7 if you really want)
+* Java 8 (you can use Java 7 if you really want to)
 
 ## Download ##
+
+Java 7 version not always up to date
 
 * [Java 8 (Recommended)](https://drive.google.com/file/d/0B87LBoj2FKG4eURwX1VTdVEtSWM/view)
 
