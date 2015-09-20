@@ -10,8 +10,6 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -59,32 +57,32 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	}
 	
 	public void initializeComponents(){
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		getContentPane().add(panel, BorderLayout.NORTH);
+		JPanel panelTop = new JPanel();
+		panelTop.setBackground(Color.WHITE);
+		getContentPane().add(panelTop, BorderLayout.NORTH);
 		
 		JLabel lblLastCoinGame = new JLabel("Last Coin Game");
 		lblLastCoinGame.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
-		panel.add(lblLastCoinGame);
+		panelTop.add(lblLastCoinGame);
 		
-		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.WEST);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel panelPlayer = new JPanel();
+		getContentPane().add(panelPlayer, BorderLayout.WEST);
+		panelPlayer.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblThePlayer = new JLabel("\u00A0\u00A0\u00A0The Player\u00A0\u00A0\u00A0");
-		panel_1.add(lblThePlayer, BorderLayout.NORTH);
+		panelPlayer.add(lblThePlayer, BorderLayout.NORTH);
 		lblThePlayer.setForeground(Color.BLACK);
 		lblThePlayer.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
 		
-		JPanel panel_5 = new JPanel();
-		panel_1.add(panel_5, BorderLayout.SOUTH);
+		JPanel panelPlayerSurrender = new JPanel();
+		panelPlayer.add(panelPlayerSurrender, BorderLayout.SOUTH);
 		
 		btnSurrender = new JButton("Surrender");
 		btnSurrender.addActionListener(this);
-		panel_5.add(btnSurrender);
+		panelPlayerSurrender.add(btnSurrender);
 		
-		JPanel panel_6 = new JPanel(new GridBagLayout());
-		panel_1.add(panel_6, BorderLayout.CENTER);		
+		JPanel panelPlayerOptions = new JPanel(new GridBagLayout());
+		panelPlayer.add(panelPlayerOptions, BorderLayout.CENTER);		
 		
 		JLabel lblOptions = new JLabel("Make a Move");
 		lblOptions.setHorizontalAlignment(SwingConstants.CENTER);
@@ -94,7 +92,7 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		gbc_lblOptions.insets = new Insets(0, 0, 5, 0);
 		gbc_lblOptions.gridx = 0;
 		gbc_lblOptions.gridy = 0;
-		panel_6.add(lblOptions, gbc_lblOptions);
+		panelPlayerOptions.add(lblOptions, gbc_lblOptions);
 		
 		btnTakeOneCoin = new JButton("Take One");
 		btnTakeOneCoin.addActionListener(this);
@@ -102,28 +100,28 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		gbc_btnTakeOneCoin.insets = new Insets(0, 0, 5, 0);
 		gbc_btnTakeOneCoin.gridx = 0;
 		gbc_btnTakeOneCoin.gridy = 1;
-		panel_6.add(btnTakeOneCoin, gbc_btnTakeOneCoin);
+		panelPlayerOptions.add(btnTakeOneCoin, gbc_btnTakeOneCoin);
 		
 		btnTakeTwoCoins = new JButton("Take Two");
 		btnTakeTwoCoins.addActionListener(this);
 		GridBagConstraints gbc_btnTakeTwoCoins = new GridBagConstraints();
 		gbc_btnTakeTwoCoins.gridx = 0;
 		gbc_btnTakeTwoCoins.gridy = 2;
-		panel_6.add(btnTakeTwoCoins, gbc_btnTakeTwoCoins);
+		panelPlayerOptions.add(btnTakeTwoCoins, gbc_btnTakeTwoCoins);
 		
-		JPanel panel_2 = new JPanel();
-		getContentPane().add(panel_2, BorderLayout.EAST);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		JPanel panelAI = new JPanel();
+		getContentPane().add(panelAI, BorderLayout.EAST);
+		panelAI.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblAi = new JLabel("\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0AI\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0");
 		lblAi.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 14));
-		panel_2.add(lblAi, BorderLayout.NORTH);
+		panelAI.add(lblAi, BorderLayout.NORTH);
 		
-		GridBagLayout gbl_panel_7 = new GridBagLayout();
-		gbl_panel_7.rowWeights = new double[]{0.0, 1.0};
-		gbl_panel_7.columnWeights = new double[]{1.0};
-		JPanel panel_7 = new JPanel(gbl_panel_7);
-		panel_2.add(panel_7, BorderLayout.CENTER);
+		GridBagLayout gbl_panelAIText = new GridBagLayout();
+		gbl_panelAIText.rowWeights = new double[]{0.0, 1.0};
+		gbl_panelAIText.columnWeights = new double[]{1.0};
+		JPanel panelAIText = new JPanel(gbl_panelAIText);
+		panelAI.add(panelAIText, BorderLayout.CENTER);
 		
 		JTextPane txtpnAiText = new JTextPane();
 		txtpnAiText.setBackground(SystemColor.control);
@@ -135,23 +133,23 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		gbc_txtpnAiText.fill = GridBagConstraints.VERTICAL;
 		gbc_txtpnAiText.gridx = 0;
 		gbc_txtpnAiText.gridy = 1;
-		panel_7.add(txtpnAiText, gbc_txtpnAiText);
+		panelAIText.add(txtpnAiText, gbc_txtpnAiText);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.WHITE);
-		getContentPane().add(panel_3, BorderLayout.SOUTH);
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setBackground(Color.WHITE);
+		getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 		
 		JLabel lblGameProgress = new JLabel("Game Progress: ");
 		lblGameProgress.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		panel_3.add(lblGameProgress);
+		bottomPanel.add(lblGameProgress);
 		
 		progressBar = new JProgressBar(0, Executor.dataCoins);
 		progressBar.setForeground(new Color(34, 139, 34));
-		panel_3.add(progressBar);
+		bottomPanel.add(progressBar);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.WHITE);
-		getContentPane().add(panel_4, BorderLayout.CENTER);
+		JPanel panelMain = new JPanel();
+		panelMain.setBackground(Color.WHITE);
+		getContentPane().add(panelMain, BorderLayout.CENTER);
 		
 		console = new JTextPane();
 		JScrollPane jsp = new JScrollPane(console);
@@ -175,7 +173,7 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 			e.printStackTrace();
 		}
 		console.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, true); //Amazing fix for the font
-		panel_4.add(jsp);
+		panelMain.add(jsp);
 	}
 
 	@Override
@@ -211,19 +209,8 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	}
 	
 	public void printWin(User u){
-		Object[] options = {"Continue",
-                "Exit",};
-		int n = JOptionPane.showOptionDialog(this,
-			    "The " + User.parseUser(u) + " has lost.",
-			    "Game Over",
-			    JOptionPane.YES_NO_OPTION,
-			    JOptionPane.PLAIN_MESSAGE,
-			    null,
-			    options,  //the titles of buttons
-			    options[0]); //default button title
-		
-		if(n == JOptionPane.NO_OPTION)
-			System.exit(1);
+		@SuppressWarnings("unused")
+		WinGUI win = new WinGUI(u);
 	}
 	
 	public void appendString(String str, boolean lose) throws BadLocationException {

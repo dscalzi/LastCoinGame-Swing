@@ -44,6 +44,9 @@ public class CoinGame {
 				this.coinsLeft = this.coinsLeft - coinsTaken;
 				gameScreen.printMove(player, coinsLeft, coinsTaken, false);
 				
+				if(isOver())
+					break;
+					
 				coinsTaken = ai.makeMove(coinsLeft);
 				this.coinsLeft = this.coinsLeft - coinsTaken;
 				gameScreen.printMove(ai, coinsLeft, coinsTaken, true);

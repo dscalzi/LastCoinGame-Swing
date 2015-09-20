@@ -7,6 +7,9 @@ import com.coingame.GUI.SimpleGUI;
 @SuppressWarnings("unused")
 public class Executor {
 	
+	//Build Version
+	public static final String VERSION = "1.1.0";
+	
 	//Collected Data to be passed forward
 	public static int dataCoins;
 	public static int dataVersion; //0 New | 1 Old
