@@ -3,6 +3,7 @@ package com.coingame.GUI;
 import javax.swing.JFrame;
 
 import com.coingame.Executor;
+import com.coingame.users.AI;
 import com.coingame.users.Player;
 import com.coingame.users.User;
 import java.awt.Color;
@@ -11,7 +12,6 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,6 +36,10 @@ import javax.swing.ScrollPaneConstants;
 @SuppressWarnings("serial")
 public class SimpleGUI extends GameGUI implements ActionListener{
 
+	private Player player;
+	@SuppressWarnings("unused")
+	private AI ai;
+	
 	private JTextPane console;
 	private JProgressBar progressBar;
 	private JButton btnSurrender;
@@ -45,15 +49,20 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	public SimpleGUI(){
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(800, 600);
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setLocation(Executor.DIM.width/2-getSize().width/2, Executor.DIM.height/2-getSize().height/2);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		initializeComponents();
 		
 		setVisible(true);
 		
+	}
+	
+	public SimpleGUI(Player p, AI ai){
+		this();
+		this.player = p;
+		this.ai = ai;
 	}
 	
 	public void initializeComponents(){
@@ -231,10 +240,10 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 			System.exit(1);
 		}
 		if(e.getSource() == btnTakeOneCoin){
-			Player.takeCoins = 1;
+			this.player.setMove(1);
 			Executor.canContinue = true;
 		}else if(e.getSource() == btnTakeTwoCoins){
-			Player.takeCoins = 2;
+			this.player.setMove(2);
 			Executor.canContinue = true;
 		}
 		

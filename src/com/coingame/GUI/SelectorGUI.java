@@ -70,9 +70,8 @@ public class SelectorGUI extends JFrame implements ChangeListener, PropertyChang
 		setResizable(false);
 		setTitle("Welcome");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(450, 310);
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setLocation(Executor.DIM.width/2-getSize().width/2, Executor.DIM.height/2-getSize().height/2);
 		initializeComponents();
 	}
 	

@@ -2,7 +2,7 @@ package com.coingame.users;
 
 public class Player extends User {
 
-	public static int takeCoins;
+	private int takeCoins;
 	
 	public Player(){
 		
@@ -11,6 +11,10 @@ public class Player extends User {
 	@Override
 	public int makeMove(int coinsLeft) {
 		return takeCoins;
+	}
+	
+	public void setMove(int takeCoins){
+		this.takeCoins = takeCoins;
 	}
 	
 }

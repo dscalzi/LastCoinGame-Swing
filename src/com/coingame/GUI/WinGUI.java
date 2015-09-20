@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import com.coingame.users.Player;
+import com.coingame.Executor;
 import com.coingame.users.AI;
 import com.coingame.users.User;
 
@@ -15,12 +16,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.SystemColor;
 
 @SuppressWarnings("serial")
@@ -38,9 +37,8 @@ public class WinGUI extends JDialog implements ActionListener{
 	
 	public WinGUI() {
 		setAlwaysOnTop(true);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(450, 350);
-        setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+        setLocation(Executor.DIM.width/2-getSize().width/2, Executor.DIM.height/2-getSize().height/2);
 		setBackground(Color.WHITE);
 		setUndecorated(true);
 		setResizable(false);

@@ -1,5 +1,8 @@
 package com.coingame;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import com.coingame.GUI.MainGUI;
 import com.coingame.GUI.SelectorGUI;
 import com.coingame.GUI.SimpleGUI;
@@ -8,7 +11,10 @@ import com.coingame.GUI.SimpleGUI;
 public class Executor {
 	
 	//Build Version
-	public static final String VERSION = "1.1.0";
+	public static final String VERSION = "1.1.1";
+	
+	//Screen Dimensions for auto-scaling
+	public static final Dimension DIM = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	//Collected Data to be passed forward
 	public static int dataCoins;

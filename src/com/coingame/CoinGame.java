@@ -27,7 +27,7 @@ public class CoinGame {
 			gameScreen = new MainGUI();
 			((MainGUI)gameScreen).setVisible(true);
 		} else {
-			gameScreen = new SimpleGUI();
+			gameScreen = new SimpleGUI(player, ai);
 			((SimpleGUI)gameScreen).setVisible(true);
 		}
 	}
