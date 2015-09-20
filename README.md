@@ -21,9 +21,9 @@
 
 Java 7 version not always up to date
 
-* [Java 8 (Recommended)](https://drive.google.com/file/d/0B87LBoj2FKG4eURwX1VTdVEtSWM/view)
+* [Java 8 (Recommended)](https://drive.google.com/file/d/0B87LBoj2FKG4dWNfMGpMZXhpN3M/view) Version 1.1.0
 
-* [Java 7 (Will eventually be unsupported)](https://drive.google.com/file/d/0B87LBoj2FKG4bFp2NEVQRlRsRVU/view)
+* [Java 7 (Will eventually be unsupported)](https://drive.google.com/file/d/0B87LBoj2FKG4bFp2NEVQRlRsRVU/view) Version 1.0.0
 
 ### Contact ###
 
