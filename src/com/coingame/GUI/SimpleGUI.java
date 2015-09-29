@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -55,8 +54,7 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		initializeComponents();
 		
-		setVisible(true);
-		
+		setVisible(true);	
 	}
 	
 	public SimpleGUI(Player p, AI ai){
@@ -209,15 +207,14 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 			}
 		if(coinsLeft == 1)
 			btnTakeTwoCoins.setEnabled(false);
-		if(coinsLeft == 0){
-			btnTakeOneCoin.setEnabled(false);
-			btnTakeTwoCoins.setEnabled(false);
-			btnSurrender.setEnabled(false);
+		if(coinsLeft == 0)
 			printWin(u);
-		}
 	}
 	
 	public void printWin(User u){
+		btnTakeOneCoin.setEnabled(false);
+		btnTakeTwoCoins.setEnabled(false);
+		btnSurrender.setEnabled(false);
 		@SuppressWarnings("unused")
 		WinGUI win = new WinGUI(u);
 	}
@@ -237,7 +234,12 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnSurrender){
-			System.exit(1);
+			try {
+				appendString("\n\n• The Player has SURRENDERED!", true);
+			} catch (BadLocationException ex) {
+				ex.printStackTrace();
+			}
+			printWin(this.player);
 		}
 		if(e.getSource() == btnTakeOneCoin){
 			this.player.setMove(1);
