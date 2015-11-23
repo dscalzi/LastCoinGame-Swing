@@ -14,25 +14,31 @@ public class CoinGame {
 	private int coinsLeft;
 	private boolean goingFirst;
 	private int difficulty; //0 Easy | 1 Medium | 2 Hard
+	private int guiVersion;
 	
 	//Users
 	private AI ai;
 	private Player player;
 	
 	public CoinGame(){
-		this.coinsLeft = Executor.dataCoins;
-		this.ai = new AI(Executor.dataDifficulty);
+		//Assignments done by selector GUI
+	}
+	
+	
+	private void initUsers(){
+		this.ai = new AI(difficulty);
 		this.player = new Player();
-		if(Executor.dataVersion == 0){
-			gameScreen = new MainGUI();
+		if(guiVersion == 0){
+			gameScreen = new MainGUI(this);
 			((MainGUI)gameScreen).setVisible(true);
 		} else {
-			gameScreen = new SimpleGUI(player, ai);
+			gameScreen = new SimpleGUI(this, player, ai);
 			((SimpleGUI)gameScreen).setVisible(true);
 		}
 	}
 	
 	public void run(){
+		this.initUsers();
 		while(!isOver()){
 			int coinsTaken;
 			if(goingFirst){
@@ -42,27 +48,16 @@ public class CoinGame {
 				}
 				coinsTaken = player.makeMove(coinsLeft);
 				this.coinsLeft = this.coinsLeft - coinsTaken;
-				gameScreen.printMove(player, coinsLeft, coinsTaken, false);
+				gameScreen.printMove(player, coinsTaken, false);
 				
 				if(isOver())
 					break;
-					
-				coinsTaken = ai.makeMove(coinsLeft);
-				this.coinsLeft = this.coinsLeft - coinsTaken;
-				gameScreen.printMove(ai, coinsLeft, coinsTaken, true);
-			} else {
-				coinsTaken = ai.makeMove(coinsLeft);
-				this.coinsLeft = this.coinsLeft - coinsTaken; 
-				gameScreen.printMove(ai, coinsLeft, coinsTaken, false);
-				
-				Executor.canContinue = false;
-				while(!Executor.canContinue){
-					//Pause Execution
-				}
-				coinsTaken = player.makeMove(coinsLeft);
-				this.coinsLeft = this.coinsLeft - coinsTaken; 
-				gameScreen.printMove(player, coinsLeft, coinsTaken, true);
 			}
+			
+			coinsTaken = ai.makeMove(coinsLeft);
+			this.coinsLeft = this.coinsLeft - coinsTaken;
+			gameScreen.printMove(ai, coinsTaken, true);
+			this.goingFirst = true;
 		}
 	}
 	
@@ -103,5 +98,13 @@ public class CoinGame {
 	
 	public void setGoingFirst(boolean goingFirst){
 		this.goingFirst = goingFirst;
+	}
+	
+	public void setGUIVersion(int version){
+		this.guiVersion = version;
+	}
+	
+	public int getGUIVersion(){
+		return this.guiVersion;
 	}
 }

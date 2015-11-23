@@ -42,6 +42,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
+import com.coingame.CoinGame;
 import com.coingame.Executor;
 
 @SuppressWarnings("unused")
@@ -65,7 +66,10 @@ public class SelectorGUI extends JFrame implements ChangeListener, PropertyChang
 	private Border border;
 	private boolean canContinue = true;
 	
-	public SelectorGUI(){
+	private CoinGame game;
+	
+	public SelectorGUI(CoinGame game){
+		this.game = game;
 		setBackground(Color.WHITE);
 		setResizable(false);
 		setTitle("Welcome");
@@ -280,13 +284,15 @@ public class SelectorGUI extends JFrame implements ChangeListener, PropertyChang
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnPlayButton && canContinue){
 			try {
-				Executor.dataCoins = (NumberFormat.getNumberInstance(java.util.Locale.US).parse(formattedTextField.getText())).intValue();
+				int coinsVal = (NumberFormat.getNumberInstance(java.util.Locale.US).parse(formattedTextField.getText())).intValue();
+				this.game.setCoins(coinsVal);
+				this.game.setCoinsLeft(coinsVal);
 			} catch (ParseException e1) {
 				System.exit(0);
 			}
-			Executor.dataDifficulty = getDifficulty();
-			Executor.dataVersion = getVersion();
-			Executor.dataGoingFirst = chckbxGoFirst.isSelected();
+			this.game.setDifficulty(getDifficulty());
+			this.game.setGoingFirst(chckbxGoFirst.isSelected());
+			this.game.setGUIVersion(getVersion());
 			Executor.canContinue = true;
 			this.dispose();
 		}

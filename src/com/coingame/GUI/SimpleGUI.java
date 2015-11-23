@@ -2,6 +2,7 @@ package com.coingame.GUI;
 
 import javax.swing.JFrame;
 
+import com.coingame.CoinGame;
 import com.coingame.Executor;
 import com.coingame.users.AI;
 import com.coingame.users.Player;
@@ -45,7 +46,10 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	private JButton btnTakeOneCoin;
 	private JButton btnTakeTwoCoins;
 	
-	public SimpleGUI(){
+	private CoinGame game;
+	
+	public SimpleGUI(CoinGame game){
+		this.game = game;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800, 600);
@@ -57,8 +61,8 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		setVisible(true);	
 	}
 	
-	public SimpleGUI(Player p, AI ai){
-		this();
+	public SimpleGUI(CoinGame game, Player p, AI ai){
+		this(game);
 		this.player = p;
 		this.ai = ai;
 	}
@@ -150,7 +154,7 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		lblGameProgress.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		bottomPanel.add(lblGameProgress);
 		
-		progressBar = new JProgressBar(0, Executor.dataCoins);
+		progressBar = new JProgressBar(0, game.getCoins());
 		progressBar.setForeground(new Color(34, 139, 34));
 		bottomPanel.add(progressBar);
 		
@@ -175,7 +179,7 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 		console.setParagraphAttributes(attribs, true);
 		console.setText("<center>Welcome to the Last Coin Game.\r<br>Can you beat the AI? We'll soon see.");
 		try {
-			appendString("\n\nThere are " + Executor.dataCoins + " coins.", false);
+			appendString("\n\nThere are " + game.getCoins() + " coins.", false);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
@@ -184,17 +188,17 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 	}
 
 	@Override
-	public void printMove(User u, int coinsLeft, int coinsTaken, boolean isTurnEnd) {
-			progressBar.setValue(Executor.dataCoins - coinsLeft);
-			if(coinsLeft == 0){
+	public void printMove(User u, int coinsTaken, boolean isTurnEnd) {
+			progressBar.setValue(game.getCoins() - game.getCoinsLeft());
+			if(game.getCoinsLeft() == 0){
 				try {
-					appendString("\n• The " + User.parseUser(u) +" has taken " +coinsTaken + parseAmount(coinsTaken, 1) + ". There" + GameGUI.parseAmount(coinsLeft, 0) + coinsLeft + " remaining.", true);
+					appendString("\n• The " + User.parseUser(u) +" has taken " +coinsTaken + parseAmount(coinsTaken, 1) + ". There" + GameGUI.parseAmount(game.getCoinsLeft(), 0) + game.getCoinsLeft() + " remaining.", true);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
 			} else {
 				try {
-					appendString("\n• The " + User.parseUser(u) +" has taken " +coinsTaken + parseAmount(coinsTaken, 1) + ". There" + GameGUI.parseAmount(coinsLeft, 0) + coinsLeft + " remaining.", false);
+					appendString("\n• The " + User.parseUser(u) +" has taken " +coinsTaken + parseAmount(coinsTaken, 1) + ". There" + GameGUI.parseAmount(game.getCoinsLeft(), 0) + game.getCoinsLeft() + " remaining.", false);
 				} catch (BadLocationException e) {
 					e.printStackTrace();
 				}
@@ -205,9 +209,9 @@ public class SimpleGUI extends GameGUI implements ActionListener{
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-		if(coinsLeft == 1)
+		if(game.getCoinsLeft() == 1)
 			btnTakeTwoCoins.setEnabled(false);
-		if(coinsLeft == 0)
+		if(game.getCoinsLeft() == 0)
 			printWin(u);
 	}
 	

@@ -6,8 +6,8 @@ import com.coingame.users.User;
 
 @SuppressWarnings("serial")
 public abstract class GameGUI extends JFrame{
-
-	public abstract void printMove(User u, int coinsLeft, int coinsTaken, boolean isTurnEnd);
+	
+	public abstract void printMove(User u, int coinsTaken, boolean isTurnEnd);
 	
 	public static String parseAmount(int coins, int type){
 		if(type == 0){
